@@ -1,0 +1,70 @@
+@import 'resets';
+@import 'variables';
+
+// USE FUNCTIONS TO COMPUTE AND RETURN VALUES
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name);
+}
+
+// USE MIXINS TO DEFINE STYLES
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+  @if ($light-theme) {
+    background: lighten($primary-color, 100%);
+    color: darken($text-color, 100%);
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    // this content will be passed back when this mixin is called
+    @content;
+  }
+}
+
+body {
+  background: $primary-color;
+  color: $text-color;
+  font-family: map-get($font-family, primary);
+}
+
+.main {
+  // No need to use calc() but units must be of same type
+  width: 80% - 40%;
+  margin: auto;
+
+  // Include the mixin for adding display of flex and centering the elements inside
+  @include flexCenter(row);
+
+  .main__paragraph1 {
+    font-weight: weight(regular);
+
+    &:hover {
+      color: green;
+    }
+  }
+
+  .main__paragraph2 {
+    // Apply the styling from paragraph1 to paragraph2
+    // We can then make some modifications to paragraph2
+    @extend .main__paragraph1;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.light {
+  @include theme($light-theme: true);
+}

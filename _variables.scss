@@ -1,0 +1,18 @@
+// VARIABLES - COMPILE DOWN TO ACTUAL VALUES THAT ARE ASSIGNED TO THEM
+$primary-color: black;
+$accent-color: #ff652f;
+$text-color: #fff;
+$mobile: 800px;
+
+// MAPS - ENTERED AS KEY VALUE PAIRS
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'bold': 700
+);
+
+$font-family: (
+  'primary': Arial,
+  'secondary': sans-serif,
+  'third': Cambria
+);
